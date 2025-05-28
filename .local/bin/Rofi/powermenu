@@ -1,0 +1,25 @@
+#!/bin/bash
+options="Shutdown\nReboot\nSuspend\nHibernate\nExit"
+choice=$(echo -e "$options" | rofi -dmenu -p "Power Menu")
+case "$choice" in
+    Shutdown)
+        systemctl poweroff
+        ;;
+    Reboot)
+        systemctl reboot
+        ;;
+    Suspend)
+        systemctl suspend
+        ;;
+    Hibernate)
+        systemctl hibernate
+        ;;
+    Exit)
+        hyprctl dispatch exit
+        ;;
+    *)
+        # Cancelled or invalid input
+        exit 1
+        ;;
+esac
+
