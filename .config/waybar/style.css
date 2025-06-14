@@ -1,3 +1,10 @@
+@import 'colors.css';
+
+/* 
+  The following color definitions are fallbacks. 
+  When your pywal script runs, it will overwrite the definitions in colors.css.
+*/
+/*
 @define-color base   #1e1e2e;
 @define-color mantle #181825;
 @define-color crust  #11111b;
@@ -28,6 +35,7 @@
 @define-color pink      #f5c2e7;
 @define-color flamingo  #f2cdcd;
 @define-color rosewater #f5e0dc;
+*/
 
 * {
     font-family: Cantarell, Symbols Nerd Font;
@@ -36,8 +44,8 @@
 }
 
 window#waybar {
-    background-color: @crust;
-    color: @text;
+    background-color: @background;
+    color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -75,26 +83,26 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 
 #workspaces button:hover {
-    color: @blue;
+    color: @accent;
     box-shadow: inherit;
     text-shadow: inherit;
-    background: @crust;
-    border: @crust;
+    background: @background;
+    border: @background;
 }
 
 #workspaces button {
     padding: 0 5px;
-    color: @surface2;
+    color: @foreground;
     margin: 4px 0 4px 6px;
     transition: color 200ms ease-in-out;
 }
 
 #workspaces button.selected {
-    color: @blue;
+    color: @accent;
 }
 
 #workspaces button.active {
-    color: @mauve;
+    color: @accent;
 }
 
 #workspaces button.urgent {
@@ -119,7 +127,7 @@ button {
 #scratchpad,
 #mpd {
     padding: 0 9px;
-    color: @text;
+    color: @foreground;
     border-radius: 15px;
     margin: 5px 0;
 }
@@ -130,31 +138,31 @@ button {
 }
 
 #clock {
-  color: @text;
+  color: @foreground;
 }
 
 #custom-pacman {
-  color: @peach;
+  color: @accent;
 }
 
 #pulseaudio {
-  color: @mauve;
+  color: @accent;
 }
 
 #pulseaudio.muted {
-  color: @surface2;
+  color: @background;
 }
 
 #network {
-  color: @blue;
+  color: @accent;
 }
 
 #network.disconnected {
-  color: @surface2;
+  color: @background;
 }
 
 #battery {
-    color: @green;
+    color: @accent;
 }
 
 #battery.warning:not(.charging) {
@@ -162,7 +170,7 @@ button {
 }
 
 #custom-power {
-  color: @maroon;
+  color: @red;
   margin-right: 5px;
 }
 
