@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/env zsh
+
 options="Shutdown\nReboot\nSuspend\nHibernate\nExit"
-choice=$(echo -e "$options" | rofi -dmenu -p "Power Menu")
+choice=$(echo -e "$options" | rofi -dmenu -p "Power Menu"
+                              \ -theme $HOME/.config/rofi/powerconfig.rasi)
 case "$choice" in
     Shutdown)
         systemctl poweroff
@@ -18,7 +20,6 @@ case "$choice" in
         hyprctl dispatch exit
         ;;
     *)
-        # Cancelled or invalid input
         exit 1
         ;;
 esac

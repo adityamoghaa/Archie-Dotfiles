@@ -1,6 +1,4 @@
-#!/bin/sh
-
-export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+#!/bin/env zsh
 
 BATTERY_STATE="$1"
 BATTERY_LEVEL=$(upower -i $(upower -e | grep battery) | awk '/percentage/ {print $2}' | sed 's/%//')

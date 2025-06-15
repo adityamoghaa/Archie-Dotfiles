@@ -1,0 +1,61 @@
+#!/bin/bash
+# Dynamically adjusts Hyprland gaps and border based on window count in the active workspace.
+
+set -e
+GAPS_SINGLE_IN=0
+GAPS_SINGLE_OUT=0
+BORDER_SINGLE=0
+
+GAPS_MULTI_IN=5
+GAPS_MULTI_OUT=10
+BORDER_MULTI=2
+
+INTERVAL=0.5
+
+# FUNCTION DEFINITIONS
+get_active_workspace_info() {
+  hyprctl activeworkspace 2>/dev/null
+}
+
+get_window_count() {
+  local ws_info="$1"
+  echo "$ws_info" | grep -oP 'windows:\s*\K\d+' || echo "0"
+}
+
+apply_layout() {
+  local gaps_in=$1
+  local gaps_out=$2
+  local border=$3
+
+  hyprctl --batch "\
+        keyword general:gaps_in $gaps_in;\
+        keyword general:gaps_out $gaps_out;\
+        keyword general:border_size $border"
+}
+
+adjust_gaps_and_borders() {
+  local window_count="$1"
+
+  if ((window_count <= 1)); then
+    apply_layout "$GAPS_SINGLE_IN" "$GAPS_SINGLE_OUT" "$BORDER_SINGLE"
+  else
+    apply_layout "$GAPS_MULTI_IN" "$GAPS_MULTI_OUT" "$BORDER_MULTI"
+  fi
+}
+
+main_loop() {
+  local last_count=""
+  while true; do
+    ws_info="$(get_active_workspace_info)"
+    win_count="$(get_window_count "$ws_info")"
+    if [[ "$win_count" != "$last_count" ]]; then
+      adjust_gaps_and_borders "$win_count"
+      last_count="$win_count"
+    fi
+
+    sleep "$INTERVAL"
+  done
+}
+
+main_loop
+

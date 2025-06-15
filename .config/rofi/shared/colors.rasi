@@ -1,0 +1,13 @@
+* {
+  background: #161212;
+  foreground: #bab5b7;
+  accent: #ad3113;
+  color0: #161212;
+  color1: #ad3113;
+  color2: #b82114;
+  color3: #ab3b12;
+  color4: #c04815;
+  color5: #e04818;
+  color6: #e66124;
+  color7: #bab5b7;
+}
