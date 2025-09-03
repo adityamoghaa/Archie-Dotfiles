@@ -84,3 +84,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/aditya/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/aditya/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
